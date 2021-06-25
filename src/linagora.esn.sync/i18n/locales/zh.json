@@ -1,0 +1,16 @@
+{
+  "Android": "安卓",
+  "Click here to learn how to synchronize Outlook 2016 with OpenPaaS": "点击这里了解如何将Outlook 2016与OpenPaaS同步",
+  "Click here to learn how to synchronize Thunderbird with OpenPaaS": "点击这里了解如何将Thunderbird与OpenPaaS同步",
+  "Click here to learn how to synchronize your Android device with OpenPaaS": "点击这里了解如何将安卓设备与OpenPaaS同步",
+  "Click here to learn how to synchronize your iOS device with OpenPaaS": "点击这里了解如何将iOS设备与OpenPaaS同步",
+  "Download and install the OpenPaas %s to automatically configure your email, calendars and contacts accounts in Thunderbird": "下载并安装OpenPaas %s来实现在Thunderbird中自动设置您的邮箱，日历和联系人",
+  "iOS": "iOS",
+  "Outlook": "Outlook",
+  "Sync an Android device with OpenPaaS": "将安卓设备与OpenPaaS同步",
+  "Sync an external application with OpenPaaS": "将外部应用与OpenPaaS同步",
+  "Sync an iOS device with OpenPaaS": "将ioS设备与OpenPaaS同步",
+  "Sync Outlook with OpenPaaS": "将Outlook与OpenPaaS同步",
+  "Sync Thunderbird with OpenPaaS": "将Thunderbird与OpenPaaS同步",
+  "Thunderbird": "Thunderbird"
+}
