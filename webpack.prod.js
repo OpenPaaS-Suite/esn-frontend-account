@@ -9,9 +9,7 @@ module.exports = merge(commons, {
   mode: 'production',
   devtool: 'source-map',
   output: {
-    filename: '[name].[hash].min.js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/account/'
+    filename: '[name].[hash].min.js'
   },
   module: {
     rules: [

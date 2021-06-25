@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 const commonLibsPath = path.resolve(__dirname, 'node_modules', 'esn-frontend-common-libs');
@@ -14,8 +15,8 @@ const pugLoaderOptions = {
   root: `${__dirname}/node_modules/esn-frontend-common-libs/src/frontend/views`
 };
 
-const BASE_HREF = process.env.BASE_HREF || '/';
-const OPENPAAS_URL = process.env.OPENPAAS_URL || 'http://localhost:8080';
+const BASE_HREF = process.env.BASE_HREF || '/account/';
+const assetsFolder = 'assets/';
 
 module.exports = {
   mode: 'development',
@@ -23,8 +24,8 @@ module.exports = {
   devtool: 'source-map',
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/account/'
+    path: path.resolve(__dirname, 'dist', assetsFolder),
+    publicPath: BASE_HREF + assetsFolder
   },
   resolve: {
     alias: {
@@ -47,52 +48,61 @@ module.exports = {
       'window.angularInjections': angularInjections,
       localforage: 'localforage' // for calendar
     }),
+    new webpack.IgnorePlugin({ resourceRegExp: /openpaas\.js$/, contextRegExp: /env$/ }),
     /*
      * To transform assets/index.pug to an HTML file, with webpack autoimporting the "main.js" bundle
      */
     new HtmlWebpackPlugin({
       template: './assets/index.pug',
-      filename: './index.html'
+      filename: '../index.html'
     }),
     new FaviconsWebpackPlugin({
       logo: './src/linagora.esn.controlcenter/images/control-center-icon.svg',
-      prefix: 'account-assets/'
+      prefix: 'favicon/'
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'node_modules', 'openpaas-auth-client', 'src', 'assets'),
+          to: 'auth'
+        },
+        {
+          from: path.resolve(__dirname, 'node_modules', 'oidc-client', 'dist', 'oidc-client.min.js'),
+          to: 'auth'
+        },
+        {
+          from: path.resolve(__dirname, 'src', 'linagora.esn.controlcenter', 'images', 'white-logo.svg'),
+          to: 'images'
+        },
+        {
+          from: path.resolve(__dirname, 'src', 'linagora.esn.controlcenter', 'images', 'logo-tiny.png'),
+          to: 'images'
+        },
+        {
+          from: path.resolve(__dirname, 'src', 'linagora.esn.controlcenter', 'images', 'user.png'),
+          to: 'images'
+        },
+        {
+          from: path.resolve(__dirname, 'node_modules', 'socket.io-client', 'dist', 'socket.io.js'),
+          to: 'socket.io/socket.io.js'
+        },
+        {
+          from: path.resolve(__dirname, 'env', 'openpaas.js'),
+          to: 'env'
+        }
+      ]
     })
   ],
   devServer: {
     contentBase: [path.join(__dirname, 'dist'), path.resolve(__dirname, 'node_modules', 'esn-frontend-login', 'dist')],
-    contentBasePublicPath: [BASE_HREF, '/login'],
-    publicPath: '/account/',
+    contentBasePublicPath: [BASE_HREF + 'index.html', '/login'],
+    host: '0.0.0.0',
+    disableHostCheck: true,
+    historyApiFallback: {
+      index: BASE_HREF + 'index.html'
+    },
     compress: true,
-    port: 9900,
-    proxy: [{
-      context: [
-        '/auth',
-        '/api',
-        '/login',
-        '/views',
-        '/account/api',
-        '/profile/app',
-        '/controlcenter/app',
-        '/images',
-        '/socket.io/',
-        '/user-status/app/bubble/',
-        '/user-status/api',
-        '/contact/app',
-        '/contact/images',
-        '/dav/api',
-        '/unifiedinbox/views',
-        '/unifiedinbox/app',
-        '/unifiedinbox/api',
-        '/calendar/app',
-        '/linagora.esn.resource/api'
-      ],
-      target: OPENPAAS_URL,
-      disableHostCheck: true,
-      secure: false,
-      changeOrigin: true,
-      withCredentials: true
-    }]
+    port: 9900
   },
   module: {
     rules: [
@@ -178,7 +188,7 @@ module.exports = {
         }
       },
       {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
             loader: 'file-loader'
@@ -205,16 +215,15 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(png|jpe?g|gif|svg)$/i,
         use: [
           {
-            loader: 'url-loader'
+            loader: 'file-loader',
+            options: {
+              outputPath: 'images'
+            }
           }
         ]
-      },
-      {
-        test: /\.svg$/,
-        loader: 'svg-inline-loader'
       },
       /*
       * for the "index.html" file of this SPA.
