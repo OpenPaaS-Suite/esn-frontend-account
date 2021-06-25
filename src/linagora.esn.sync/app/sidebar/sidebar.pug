@@ -1,0 +1,10 @@
+.controlcenter-sidebar(ng-click="$hide()")
+  ul.nav.nav-pills.nav-stacked
+    .listview
+      .lv-body(dynamic-directive='controlcenter-sidebar-menu')
+        .lv-item.menu-heading
+          i.mdi.mdi-account-settings-variant
+          .menu-title {{ 'Account' | translate }}
+        sync-sidebar-menu-item(icon="mdi-account", ui-sref="profile", ui-sref-active="selected", label="{{ 'Profile' | translate }}")
+        sync-sidebar-menu-item(icon="mdi-settings", ui-sref="controlcenter.general", ui-sref-active="selected", label="{{ 'Settings' | translate }}")
+        sync-sidebar-menu-item(icon="mdi-sync", ui-sref="controlcenter.sync", ui-sref-active="selected", label="{{ 'Sync' | translate }}")
