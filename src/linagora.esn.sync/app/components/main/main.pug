@@ -1,0 +1,20 @@
+.cc-sync(ui-view="sync")
+  .block-header
+    h2 {{ 'Sync an external application with OpenPaaS' | translate }}
+
+  .cc-sync-apps
+    .clickable.card.cc-sync-app(ui-sref="controlcenter.sync.thunderbird")
+      img.cc-sync-app-icon(ng-src='{{$ctrl.iconThunderbird}}', title=('Thunderbird'), alt=('Thunderbird'))
+      .cc-sync-app-description {{ 'Click here to learn how to synchronize Thunderbird with OpenPaaS' | translate}}
+
+    .clickable.card.cc-sync-app(ui-sref="controlcenter.sync.outlook")
+      img.cc-sync-app-icon(ng-src="{{$ctrl.iconOutlook}}", title=('Outlook'), alt=('Outlook'))
+      .cc-sync-app-description {{'Click here to learn how to synchronize Outlook 2016 with OpenPaaS'| translate}}
+
+    .clickable.card.cc-sync-app(ui-sref="controlcenter.sync.android")
+      img.cc-sync-app-icon(ng-src="{{$ctrl.iconAndroid}}", title=('Android'), alt=('Android'))
+      .cc-sync-app-description {{'Click here to learn how to synchronize your Android device with OpenPaaS'| translate}}
+
+    .clickable.card.cc-sync-app(ui-sref="controlcenter.sync.ios")
+      img.cc-sync-app-icon(ng-src="{{$ctrl.iconIOS}}", title=('iOS'), alt=('iOS'))
+      .cc-sync-app-description  {{'Click here to learn how to synchronize your iOS device with OpenPaaS' | translate }}

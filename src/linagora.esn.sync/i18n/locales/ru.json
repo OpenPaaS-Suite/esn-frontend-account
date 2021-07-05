@@ -1,0 +1,16 @@
+{
+  "Sync an external application with OpenPaaS": "Синхронизировать внешнее приложение с OpenPaaS",
+  "Thunderbird": "Thunderbird",
+  "Download and install the OpenPaas %s to automatically configure your email, calendars and contacts accounts in Thunderbird": "Загрузите и установите OpenPaas %s для автоматической настройки учетных записей электронной почты, календарей и контактов в Thunderbird.",
+  "Click here to learn how to synchronize Outlook 2016 with OpenPaaS": "Нажмите здесь, чтобы узнать, как синхронизировать Outlook 2016 с OpenPaaS",
+  "Outlook": "Outlook",
+  "Sync Outlook with OpenPaaS": "Синхронизировать Outlook с OpenPaaS",
+  "Click here to learn how to synchronize your Android device with OpenPaaS": "Нажмите здесь, чтобы узнать, как синхронизировать ваше устройство Android с OpenPaaS",
+  "Android": "Android",
+  "Sync an Android device with OpenPaaS": "Синхронизировать устройство Android с OpenPaaS",
+  "Click here to learn how to synchronize your iOS device with OpenPaaS": "Нажмите здесь, чтобы узнать, как синхронизировать ваше устройство iOS с OpenPaaS",
+  "iOS": "iOS",
+  "Sync an iOS device with OpenPaaS": "Синхронизируйте устройство iOS с OpenPaaS",
+  "Click here to learn how to synchronize Thunderbird with OpenPaaS": "Нажмите здесь, чтобы узнать, как синхронизировать Thunderbird с OpenPaaS",
+  "Sync Thunderbird with OpenPaaS": "Синхронизировать Thunderbird с OpenPaaS"
+}
